@@ -73,97 +73,123 @@
 			Строительный калькулятор Фанеры, ДВП, ДСП и ОСП
 		</h1>
 
-		<div>
-			<br>
-			<br>
-			<h2>1. Выберите материал</h2>
-			<br>
-			<div class="card-deck">
-				<div ng-repeat="material in materials" style="cursor: pointer;" ng-class="{ active: stage[0].value === $index }" class="card" style="width: 20rem;" ng-click="calculator.setStage($event, 'material', $index)">
-					<img width="100%" height="240px" src="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
-					<div class="card-block">
-						<h4 class="card-title">{{ material.title }}</h4>
-						<!-- <p class="card-text">Какое нибудь описание</p> -->
-						<div class="btn btn-block btn-primary">Выбрать</div>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div>
+				<br>
+				<br>
+				<h2>1. Выберите материал</h2>
+				<br>
+				<div class="card-deck">
+					<div ng-repeat="material in materials" style="cursor: pointer;" ng-class="{ active: stage[0].value === $index }" class="card" style="width: 20rem;" ng-click="calculator.setStage($event, 'material', $index)">
+						<img width="100%" height="240px" src="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
+						<div class="card-block">
+							<h4 class="card-title">{{ material.title }}</h4>
+							<!-- <p class="card-text">Какое нибудь описание</p> -->
+							<div class="btn btn-block btn-primary">Выбрать</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
 
 
-		<div ng-show="stage[0].enable">
-			<br>
-			<br>
-			<h2>2. Укажите общую площадь или количество листов</h2>
-			<br>
+<div class="container" ng-show="stage[0].enable">
+	<div class="row">
+		<div class="col-lg-12">
+			<div>
+				<br>
+				<br>
+				<h2>2. Укажите общую площадь или количество листов</h2>
+				<br>
 
-			<form class="card-deck">
+				<form class="card-deck">
 
-				<div ng-class="{active: stage[1].value === 0}" class="card pointer" ng-click="calculator.setComplexStage($event, 'square', 0)">
-					<div class="card-block">
-						<div class="card-text">
+					<div ng-class="{active: stage[1].value === 0}" class="card pointer" ng-click="calculator.setComplexStage($event, 'square', 0)">
+						<div class="card-block">
+							<div class="card-text">
+								<label for="square-field" style="text-align: left">
+									Площадь
+								</label>
+								<div class="input-group">
+									<input class="form-control" min="0" type="number" step="any" name="square" id="square-field" value="0">
+									<div class="input-group-addon">
+										<strong>м<sup>2</sup></strong>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div style="display: inline-block; padding: 42px 20px;">или</div>
+
+					<div ng-class="{active: stage[1].value === 1}" class="card pointer" ng-click="calculator.setComplexStage($event, 'square', 1)">
+						<div class="card-block">
 							<label for="square-field" style="text-align: left">
-								Площадь
+								Количество
 							</label>
 							<div class="input-group">
-								<input class="form-control" min="0" type="number" step="any" name="square" id="square-field" value="0">
+								<input class="form-control" type="number"  min="0" name="capacity" id="capacity-field" value="0">
 								<div class="input-group-addon">
-									<strong>M2</strong>
+									<strong>шт</strong>
 								</div>
 							</div>
 						</div>
 					</div>
-
 				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
-				<div style="display: inline-block; padding: 42px 20px;">или</div>
+	<div class="container" ng-show="stage[1].enable">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
 
-				<div ng-class="{active: stage[1].value === 1}" class="card pointer" ng-click="calculator.setComplexStage($event, 'square', 1)">
-					<div class="card-block">
-						<label for="square-field" style="text-align: left">
-							Количество
-						</label>
-						<div class="input-group">
-							<input class="form-control" type="number"  min="0" name="capacity" id="capacity-field" value="0">
-							<div class="input-group-addon">
-								<strong>шт</strong>
-							</div>
-						</div>
+					<br>
+					<br>
+					<h2>3. Выберите один размер листа (мм х мм)</h2>
+					<br>
+
+					<div href="#" ng-class="{ 'btn-primary': stage[2].value === $index }" class="btn" ng-repeat="size in sizes" ng-click="calculator.setStage($event, 'size', $index)">
+						{{ size[0] }} x {{ size[1] }}
 					</div>
 				</div>
 			</div>
-		</form>
+		</div>
+	</div>
 
 
-		<div ng-show="stage[1].enable">
+	<div class="container" ng-show="stage[2].enable">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
 
-			<br>
-			<br>
-			<h2>3. Выберите один размер листа (мм х мм)</h2>
-			<br>
+					<br>
+					<br>
+					<h2>4. Выберите толщину листа (мм)</h2>
+					<br>
 
-			<div href="#" ng-class="{ 'btn-primary': stage[2].value === $index }" class="btn" ng-repeat="size in sizes" ng-click="calculator.setStage($event, 'size', $index)">
-				{{ size[0] }} x {{ size[1] }}
+					<div href="#" ng-class="{ 'btn-primary': stage[3].value === $index }" class="btn" ng-repeat="depth in depths" ng-click="calculator.setStage($event, 'depth', $index)">
+						{{ depth }}
+					</div>
+				</div>
 			</div>
 		</div>
-
-
-		<div ng-show="stage[2].enable">
-
-			<br>
-			<br>
-			<h2>4. Выберите толщину листа (мм)</h2>
-			<br>
-
-			<div href="#" ng-class="{ 'btn-primary': stage[3].value === $index }" class="btn" ng-repeat="depth in depths" ng-click="calculator.setStage($event, 'depth', $index)">
-				{{ depth }}
-			</div>
-		</div>
+	</div>
 
 		<br>
 		<br>
 
-		<div class="card" ng-show="calculator.showResult()">
+		<div class="container" ng-show="calculator.showResult()">
+			<div class="row">
+				<div class="col-lg-6">
+		<div class="card">
 			<div class="card-block">
 				<h2 class="card-title">Результат расчёта</h2>
 
@@ -175,6 +201,23 @@
 
 			</div>
 		</div>
+	</div>
+	<div class="col-lg-6">
+		<div class="card">
+			<div class="card-block">
+				<h2 class="card-title">Закажите прямо сейчас</h2>
+				<div class="input-group">
+				<div class="input-group-addon">
+					<strong>+7</strong>
+				</div>
+				<input class="form-control" type="tel" name="phone" id="phone-field" pattern="+7 (888) 88-88-88" placeholder="(888) 888-88-88">
+			</div>
+			<div class="btn btn-block btn-primary" style="margin: 22px auto; width: calc(100% - 200px);">Заказать</div>
+		</div>
+		</div>
+	</div>
+	</div>
+	</div>
 
 		<br>
 		<br>
