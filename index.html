@@ -7,6 +7,7 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="jquery.inputmask.bundle.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.min.js" charset="utf-8"></script>
@@ -20,6 +21,21 @@
 	}
 	.btn {
 		cursor: pointer;
+	}
+	.navbar-phone {
+		font-size: 20px;
+		float: right;
+	}
+	.navbar-info {
+		float: right;
+		font-size: 12px;
+		width: 1500px;
+	}
+	a.back {
+		font-size: 16px;
+	}
+	a.back::before {
+		content: '← ';
 	}
 	</style>
 	<script>
@@ -54,15 +70,26 @@
 		}
 
 	</script>
-	<script type="text/javascript" src="https://cdn.rawgit.com/westtrade/build-calc/ed085cfd/calculator.js"></script>
+	<script type="text/javascript" src="calculator.js"></script>
+	<script src="scroll.js"></script>
 </head>
 <body ng-app="buildCalc">
 
-	<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-		<div class="container">
-			<a class="navbar-brand" href="#">Калькулятор</a>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <div class="container">
+    <a class="navbar-brand" href="#"><img src="" alt="img"></a><a href="#" class="back">Вернуться назад</a>
+  </div>
+	<div class="container">
+	<span class="navbar-phone">+7 (4742) 50-51-80</span>
+</div>
+<span class="navbar-info">Купить Фанеру, ОСП, ДСП, МДФ, ДВП по цене завода производителя в Липецке. Мы работаем как с оптовыми поставками, мелкооптовыми, так и в розницу, посколько склад и офис у нас находятся территориально в одном месте.</span>
+</nav>
 		</div>
-	</nav>
+	</div>
+</div>
 
 	<br>
 	<br>
@@ -205,14 +232,14 @@
 	<div class="col-lg-6">
 		<div class="card">
 			<div class="card-block">
-				<h2 class="card-title">Закажите прямо сейчас</h2>
+				<h2 class="card-title">Получить стоимость</h2>
 				<div class="input-group">
 				<div class="input-group-addon">
 					<strong>+7</strong>
 				</div>
-				<input class="form-control" type="tel" name="phone" id="phone-field" pattern="+7 (888) 88-88-88" placeholder="(888) 888-88-88">
+				<input class="form-control" type="tel" name="phone" id="phone-field" placeholder="(888) 888-88-88">
 			</div>
-			<div class="btn btn-block btn-primary" style="margin: 22px auto; width: calc(100% - 200px);">Заказать</div>
+			<div class="btn btn-block btn-primary" style="margin: 22px auto; width: calc(100% - 200px);">Получить</div>
 		</div>
 		</div>
 	</div>
@@ -227,6 +254,12 @@
 
 
 
+<script>
+$(document).ready(function(){
+  // $('#phone-field').inputmask("999 999-99-99");
+  $('#phone-field').inputmask({"mask": "(999) 999-99-99"});
+});
 
+</script>
 </body>
 </html>
